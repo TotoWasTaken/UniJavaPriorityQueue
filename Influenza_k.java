@@ -27,11 +27,11 @@ class Influenza_k {
             }
             ArrayList<City> temporaryArraylist = new ArrayList<>();
             for(int i = 0; i < temp.Size(); i++) {
-                temporaryArraylist.add(temp.getMax());
+                temporaryArraylist.add(temp.getMin());
             }
             if (k <= temp.Size()) {
                 System.out.println("The top " + k + " cities are:");
-                for(int i = temp.Size() - 1; i >= temp.Size() - k; i--) {
+                for(int i = 0; i < k; i++) {
                     System.out.println(temporaryArraylist.get(i));
                 }
             } else {
