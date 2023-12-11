@@ -52,11 +52,11 @@ public class PriorityQueue {
         return m_size;
     }
 
-    City Min(){
+    City min(){
         return currMin;
     }
 
-    City getMin() {
+    City getmin() {
         exchange(1, N);
         sink(1, N-1);
         currMin = m_pq[N--];

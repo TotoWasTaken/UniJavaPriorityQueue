@@ -27,7 +27,7 @@ class Influenza_k {
             }
             ArrayList<City> temporaryArraylist = new ArrayList<>();
             for(int i = 0; i < temp.Size(); i++) {
-                temporaryArraylist.add(temp.getMin());
+                temporaryArraylist.add(temp.getmin());
             }
             if (k <= temp.Size()) {
                 System.out.println("The top " + k + " cities are:");
