@@ -1,14 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
 class Influenza_k {
     public static String line = "";
     public static String del = " ";
-
     public static void main(String[] args) {   
         try {
             Scanner scan = new Scanner(System.in);
@@ -25,14 +23,10 @@ class Influenza_k {
                 City tempCity = new City(tempLine[0], tempLine[1], tempLine[2], tempLine[3]);
                 temp.insert(tempCity);
             }
-            ArrayList<City> temporaryArraylist = new ArrayList<>();
-            for(int i = 0; i < temp.Size(); i++) {
-                temporaryArraylist.add(temp.getmin());
-            }
             if (k <= temp.Size()) {
-                System.out.println("The top " + k + " cities are:");
-                for(int i = 0; i < k; i++) {
-                    System.out.println(temporaryArraylist.get(i));
+                System.out.printf("The top %s cities are:\n",k);
+                for(int i = 0;i < k;i++) {
+                    System.out.println(temp.getmin());;
                 }
             } else {
                 System.out.println("The value of k cannot exceed the number of cities on a file!");

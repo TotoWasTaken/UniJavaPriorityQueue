@@ -55,8 +55,10 @@ public class City implements CityInterface, Comparable<City> {
     }
 
     public int compareTo(City o) {
-        if (Float.compare(calculateDensity(), o.calculateDensity()) != 0) return Float.compare(calculateDensity(), o.calculateDensity());
-        if (m_Name.compareTo(o.getName()) != 0) return m_Name.compareTo(o.getName());
+        if (Float.compare(calculateDensity(), o.calculateDensity()) != 0) 
+            return Float.compare(calculateDensity(), o.calculateDensity());
+        if (m_Name.compareTo(o.getName()) != 0) 
+            return m_Name.compareTo(o.getName());
         return Integer.compare(m_ID, o.getID()); 
     }
 
