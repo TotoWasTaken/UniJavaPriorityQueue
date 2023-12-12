@@ -5,7 +5,7 @@ public class PriorityQueue {
     private int N;
 
     private boolean checkAvailability() {
-        return (float)m_size / (float)m_capacity * 100 > 0.75f;
+        return (float)m_size / (float)m_capacity * 100 >= 0.75f;
     }
 
     private void resize() {
@@ -57,7 +57,7 @@ public class PriorityQueue {
         N = 0;
     }
 
-    boolean empty() {
+    boolean isEmpty() {
         return N == 0;
     }
 
