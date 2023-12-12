@@ -17,7 +17,7 @@ class Influenza_k {
             BufferedReader br = new BufferedReader(fr); 
             System.out.println("Insert a value for k:");
             int k = scan.nextInt();
-            PriorityQueue temp = new PriorityQueue((int)fn.length());
+            PQ temp = new PQ(5);
             while ((line = br.readLine()) != null) {
                 String[] tempLine = line.split(del);
                 City tempCity = new City(tempLine[0], tempLine[1], tempLine[2], tempLine[3]);
