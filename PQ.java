@@ -4,10 +4,17 @@ public class PQ {
     private int m_capacity;
     private int N;
     
-    public boolean checkArray() {
+    PQ(int Capacity) {
+        m_capacity = Capacity;
+        m_pq = new City[m_capacity + 1];
+        m_size = 0;
+        N = 0;
+    }
+
+    private boolean checkArray() {
         return (float)m_size / (float)m_capacity >= 0.75;
     }
-    
+
     private boolean moreThan(int i, int j) {
         return m_pq[i].compareTo(m_pq[j]) > 0;
     }
@@ -29,23 +36,12 @@ public class PQ {
         while(2 * position <= N) {
             int index = 2 * position;
             if (index < N && moreThan(index, index+1)) 
-                index++;
-                if (!moreThan(position, index)) 
-                break;
-                exchange(position, index);
-                position = index;
+            index++;
+            if (!moreThan(position, index)) 
+            break;
+            exchange(position, index);
+            position = index;
         }
-    }
-    
-    PQ(int Capacity) {
-        m_capacity = Capacity;
-        m_pq = new City[m_capacity + 1];
-        m_size = 0;
-        N = 0;
-    }
-    
-    boolean isEmpty() {
-        return N == 0;
     }
     
     private void resize() {
@@ -54,19 +50,26 @@ public class PQ {
             for(int i = 1;i <= m_size; i++) {
                 tempArray[i] = m_pq[i];
             }
-            m_pq = tempArray;
             m_capacity *= 2;
+            m_pq = new City[m_capacity];
+            for(int i = 0;i <= m_size; i++) {
+                m_pq[i] = tempArray[i];
+            }
         }
     }
+
+    public boolean isEmpty() {
+        return N == 0;
+    }
     
-    void insert(City _city) {
+    public void insert(City _city) {
         m_size++;
         resize();
         m_pq[++N] = _city;
         swim(N);
     }
     
-    void remove(int ID) {
+    public void remove(int ID) {
         int target = 0;
         boolean flag = false;
         for(int i = 1;i <= m_size;i++) {
@@ -83,25 +86,17 @@ public class PQ {
         }
     } 
     
-    int Size() {
+    public int Size() {
         return m_size;
     }
 
-    City min(){
+    public City min(){
         return m_pq[1];
     }
 
-    City getmin() {
+    public City getmin() {
         exchange(1, N);
         sink(1, N-1);
         return m_pq[N--];
-    }
-
-    public int getCapacity() {
-        return m_capacity;
-    }
-
-    public City getCity(int index) {
-        return m_pq[index];
     }
 }
