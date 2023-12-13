@@ -1,3 +1,3 @@
-public class DynamixInfluenza_k_withPQ {
+public class DynamicInfluenza_k_withPQ {
     
 }

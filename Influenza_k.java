@@ -23,10 +23,14 @@ class Influenza_k {
                 City tempCity = new City(tempLine[0], tempLine[1], tempLine[2], tempLine[3]);
                 temp.insert(tempCity);
             }
+            City[] CityArray = new City[k];
             if (k <= temp.Size()) {
                 System.out.printf("The top %s cities are:\n",k);
                 for(int i = 0;i < k;i++) {
-                    System.out.println(temp.getmin());;
+                    CityArray[i] = temp.getmin();
+                }
+                for(int i = 0;i < k;i++) {
+                    System.out.println(CityArray[i]);
                 }
             } else {
                 System.out.println("The value of k cannot exceed the number of cities on a file!");

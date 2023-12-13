@@ -1,7 +1,7 @@
 public class PQ {
+    private int m_capacity;
     private City[] m_pq;
     private int m_size;
-    private int m_capacity;
     private int N;
     
     PQ(int Capacity) {
@@ -72,13 +72,13 @@ public class PQ {
     public void remove(int ID) {
         int target = 0;
         boolean flag = false;
-        for(int i = 1;i <= m_size;i++) {
-            if (ID == m_pq[i].getID()) {
+        for(int i = 1; i < m_size;i++) {
+            if(m_pq[i].getID() == ID) {
                 target = i;
                 flag = true;
                 break;
-            } 
-        }
+            }
+        }   
         if (flag) {
             m_size--;
             exchange(target, N);
@@ -98,5 +98,9 @@ public class PQ {
         exchange(1, N);
         sink(1, N-1);
         return m_pq[N--];
+    }
+
+    public City getCity(int Index) {
+        return m_pq[Index];
     }
 }

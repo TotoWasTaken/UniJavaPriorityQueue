@@ -5,6 +5,11 @@ public class test {
         temp.insert(new City(22, "Giannis", 2500000, 200));
         temp.insert(new City(32, "Nikos", 504332, 10));
         temp.insert(new City(89, "Stamos", 42043, 43));
-        temp.insert(new City(50, "Test", 1000, 1));   
+
+        temp.remove(22);
+
+        for(int i = 1; i <= temp.Size();i++) {
+            System.out.println(temp.getCity(i));
+        }
     }
 }
