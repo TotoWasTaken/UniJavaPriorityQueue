@@ -4,6 +4,9 @@ public class PQ {
     private int m_capacity;
     private int N;
     
+    public boolean checkArray() {
+        return (float)m_size / (float)m_capacity >= 0.75;
+    }
     
     private boolean moreThan(int i, int j) {
         return m_pq[i].compareTo(m_pq[j]) > 0;
@@ -46,22 +49,19 @@ public class PQ {
     }
     
     private void resize() {
-        if((float)m_size / (float)m_capacity >= 0.75) {
-            City[] tempArray = new City[m_size + 1];
+        if(checkArray()) {
+            City[] tempArray = new City[m_capacity];
             for(int i = 1;i <= m_size; i++) {
                 tempArray[i] = m_pq[i];
             }
+            m_pq = tempArray;
             m_capacity *= 2;
-            m_pq = new City[m_capacity];
-            for(int i = 1;i <= m_size; i++) {
-                m_pq[i] = tempArray[i];
-            }
         }
     }
     
     void insert(City _city) {
-        resize();
         m_size++;
+        resize();
         m_pq[++N] = _city;
         swim(N);
     }
@@ -69,7 +69,7 @@ public class PQ {
     void remove(int ID) {
         int target = 0;
         boolean flag = false;
-        for(int i = 0;i <= m_size;i++) {
+        for(int i = 1;i <= m_size;i++) {
             if (ID == m_pq[i].getID()) {
                 target = i;
                 flag = true;
@@ -77,6 +77,7 @@ public class PQ {
             } 
         }
         if (flag) {
+            m_size--;
             exchange(target, N);
             sink(1, N-1);
         }
@@ -98,5 +99,9 @@ public class PQ {
 
     public int getCapacity() {
         return m_capacity;
+    }
+
+    public City getCity(int index) {
+        return m_pq[index];
     }
 }
