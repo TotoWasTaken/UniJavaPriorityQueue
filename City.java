@@ -3,7 +3,7 @@ public class City implements CityInterface, Comparable<City> {
     private String m_Name;
     private int m_population;
     private int m_InfluenzaCases;
-    
+
     City(int ID, String Name, int population, int InfluenzaCases){
         m_ID = ID;
         m_Name = Name;
@@ -52,6 +52,10 @@ public class City implements CityInterface, Comparable<City> {
 
     public float calculateDensity() {
         return (float)m_InfluenzaCases / (float)m_population;
+    }
+
+    public float calculateMedianDensity() {
+        return ((float)m_InfluenzaCases / (float)m_population) * 50000;
     }
 
     public int compareTo(City o) {

@@ -1,18 +1,18 @@
-public class PQ {
+public class PQ_f {
     private int m_capacity;
-    private City[] m_pq;
+    private Float[] m_pq;
     private int m_size;
     private int N;
     
-    PQ(int Capacity) {
+    PQ_f(int Capacity) {
         m_capacity = Capacity;
-        m_pq = new City[m_capacity + 1];
+        m_pq = new Float[m_capacity + 1];
         m_size = 0;
         N = 0;
     }
 
     private boolean checkArray() {
-        return (float)N / (float)m_capacity >= 0.75;
+        return (float)m_size / (float)m_capacity >= 0.75;
     }
 
     private boolean moreThan(int i, int j) {
@@ -20,7 +20,7 @@ public class PQ {
     }
     
     private void exchange(int i, int j) {
-        City temp = m_pq[i];
+        float temp = m_pq[i];
         m_pq[i] = m_pq[j];
         m_pq[j] = temp;
     }
@@ -46,13 +46,13 @@ public class PQ {
     
     private void resize() {
         if(checkArray()) {
-            m_capacity = m_capacity*2;
-            City[] tempArray = new City[m_capacity];
+            Float[] tempArray = new Float[m_capacity];
             for(int i = 1;i <= m_size; i++) {
                 tempArray[i] = m_pq[i];
             }
-            m_pq = new City[m_capacity];
-            for(int i = 1;i <= m_size; i++) {
+            m_capacity *= 2;
+            m_pq = new Float[m_capacity];
+            for(int i = 0;i <= m_size; i++) {
                 m_pq[i] = tempArray[i];
             }
         }
@@ -68,54 +68,30 @@ public class PQ {
         return N == 0;
     }
     
-    public void insert(City _city) {
+    public void insert(Float num) {
         m_size++;
         resize();
-        m_pq[++N] = _city;
+        m_pq[++N] = num;
         swim(N);
-    }
-    
-    public void remove(int ID) {
-        int target = 0;
-        boolean flag = false;
-        for(int i = 1; i <= m_size;i++) {
-            if(m_pq[i].getID() == ID) {
-                target = i;
-                flag = true;
-                break;
-            }
-        }
-        if (flag) {
-            // m_size--;
-            // exchange(target, N);
-            // sink(1, N-1);
-            Index_remove(target);
-            --N;
-        }
     }
     
     public void removeLast(){
         Index_remove(m_size);
-        --N;
     }
 
     public int Size() {
         return m_size;
     }
 
-    public City min(){
+    public Float min(){
         return m_pq[1];
     }
 
-    public City getmin() {
+    public Float getmin() {
         // --m_size;
         // exchange(1, N);
         // sink(1, N-1);
         Index_remove(1);
         return m_pq[N--];
-    }
-
-    public City getCity(int Index) {
-        return m_pq[Index];
     }
 }
